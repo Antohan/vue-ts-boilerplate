@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import { pluck, filter, switchMap } from 'rxjs/operators';
+import { pluck, filter, debounceTime, switchMap } from 'rxjs/operators';
+import { from } from 'rxjs';
 import movieApi from '@/api/movieDbApi';
 import MovieSearchResults from './MovieSearchResults';
 
@@ -28,8 +29,8 @@ export default {
 			movies$: this.search$.pipe(
 				pluck('event', 'target', 'value'),
 				filter(value => value.length > 2),
-				// debounceTime(500),
-				switchMap(movieApi.searchMovie),
+				debounceTime(500),
+				switchMap(query => from(movieApi.searchMovie(query))),
 			),
 		}
 	},

@@ -32,7 +32,7 @@ export default {
 			if (value.length < 2) {
 				return;
 			}
-      this.movies = await movieApi.seachMovie(value) || [];
+      this.movies = await movieApi.searchMovie(value) || [];
     }, 500),
 	},
 }
