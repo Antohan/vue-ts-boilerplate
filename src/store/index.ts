@@ -1,12 +1,14 @@
-import Vue from 'vue'
-import Vuex, { StoreOptions } from 'vuex'
-
+import Vue from 'vue';
+import Vuex, { StoreOptions } from 'vuex';
 import mutations from './mutations';
-import { people } from './people';
+import { auth } from './auth';
 
 Vue.use(Vuex);
 
 export interface RootState {
+  /**
+   * Stores application loading status.
+   */
   loading: boolean;
 }
 
@@ -24,7 +26,7 @@ const store: StoreOptions<RootState> = {
   state,
   mutations,
   modules: {
-    people,
+    auth,
   },
 };
 
